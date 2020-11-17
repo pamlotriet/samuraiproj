@@ -17,8 +17,5 @@ mongoose.connect(process.env.MONGO_URI || MONGO_URI, {
     useUnifiedTopology: true
 });
 
-mongoose.connection.on('connected', () => {
-    console.log('Mongoose is connected!');
-});
 
 app.listen(PORT);
