@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-import User from './schemas/userSchema';
 const app = express();
 const bodyParser = require('body-parser');
 
