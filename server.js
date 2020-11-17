@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path'
 const app = express();
 const bodyParser = require('body-parser');
-const userRoutes = require('./api/userRoutes');
-
+const userRoutes = require(path.join(__dirname,'/api/userRoutes'));
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
