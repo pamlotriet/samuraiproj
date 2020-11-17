@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path'
 const app = express();
 const bodyParser = require('body-parser');
-const userRoutes = require('samuraiproj/api/userRoutes.js');
+
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
