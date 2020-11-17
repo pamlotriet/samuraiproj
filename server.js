@@ -4,7 +4,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
 require('dotenv').config();
-import User from '/schemas/userSchema.js';
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname));
@@ -25,6 +24,13 @@ mongoose.connect(process.env.MONGO_URI || MONGO_URI, {
 
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!');
+    const userSchema = mongoose.Schema({
+    name:{type: String},
+    surname: {type: String},
+    email: {type: String, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ },
+    password:{type: String},
+});
+
 });
 
 
@@ -32,7 +38,7 @@ mongoose.connection.on('connected', () => {
 
 //registering new user
 router.post('/register.html', (req,res,next)=> {
-        User.find({email: req.body.email})
+        userSchema.find({email: req.body.email})
         .exec()
         .then(user => {
             if(user){
@@ -41,7 +47,7 @@ router.post('/register.html', (req,res,next)=> {
                 });
             }
             else{
-                        const user = new User({
+                        const user = new userSchema({
                             name: req.body.name,
                             surname: req.body.surname,
                             email: req.body.email,
