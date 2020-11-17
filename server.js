@@ -41,7 +41,7 @@ app.post('/register.html', (req,res,next)=> {
         User.find({email: req.body.email})
         .exec()
         .then(user => {
-            if(user.length < 1){
+            if(user){
                 return res.status(409).json({
                     message: 'Email already exists' 
                 });
