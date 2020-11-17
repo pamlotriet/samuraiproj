@@ -1,4 +1,4 @@
-const User = require('/schemas/userSchema');
+const User = require('./schemas/userSchema.js');
 
 //register new user
 
