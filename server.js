@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
-
+const router = express.Router();
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema({
 
 
 //registering new user
-app.post('/register.html', (req,res,next)=> {
+router.post('/register.html', (req,res,next)=> {
         User.find({email: req.body.email})
         .exec()
         .then(user => {
