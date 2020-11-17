@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
 require('dotenv').config();
-import User from './userSchema';
+import User from 'samuraiproj/userSchema.js';
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname));
