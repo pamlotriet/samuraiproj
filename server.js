@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path'
 const app = express();
 const bodyParser = require('body-parser');
-const userRoutes = require('./api/userRoutes.js');
+const userRoutes = require('./api/userRoutes');
 
 require('dotenv').config();
 
