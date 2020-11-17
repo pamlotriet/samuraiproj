@@ -38,15 +38,7 @@ mongoose.connection.on('connected', () => {
 
 //registering new user
 router.post('/register.html', (req,res,next)=> {
-        userSchema.find({email: req.body.email})
-        .exec()
-        .then(user => {
-            if(user){
-                return res.status(409).json({
-                    message: 'Email already exists' 
-                });
-            }
-            else{
+    
                         const user = new userSchema({
                             name: req.body.name,
                             surname: req.body.surname,
@@ -67,7 +59,7 @@ router.post('/register.html', (req,res,next)=> {
                                     error: err
                                 });
                             });
-                    }
+                    
                 });
     });
 
