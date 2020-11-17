@@ -1,0 +1,34 @@
+body{
+    position: relative;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    display: block;
+    background-image: url('pt.jpg');
+    
+}
+
+button{
+    height: 50px;
+    width: 200px;
+}
+
+form{
+    top: 5%;
+    align-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+}
+
+#home{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+img{
+    height: 500px;
+    width: auto;
+}

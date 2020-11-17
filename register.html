@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="register.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Register</title>
+</head>
+<body>
+  
+
+    <div class="register">
+
+        <form >
+            
+            <div class="image-container">
+                <image src= "STI.jpg"></image>
+            </div>
+
+            <div id="input">
+                
+                <input id = 'Rname' type = "text" placeholder="Enter Name"  required>
+                <br>
+                <input id = 'Rsurname' type = "text" placeholder="Enter Surname"  required>
+                <br>
+                <input id = 'Remail' type = "email" placeholder="Enter Email"  required>
+                <br>
+                <input id = 'Rpass' type = "password" placeholder="Enter Password" required>
+                <br>
+                <label id="display-error" ></label>
+                <br>
+                <button onclick="addUser()" type="button" id="register">Register</button>
+                <br>
+                <button type="button" class="cancelbtn" onclick="window.location.href = 'index.html'">Cancel</button>
+                
+            </div>
+            <script>
+                    const addUser = () => {
+                        const name = document.getElementById('Rname').value;
+                        const surname = document.getElementById('Rsurname').value;
+                        const email = document.getElementById('Remail').value;
+                        const password = document.getElementById('Rpass').value;
+
+                        axios.post('/register.html',{
+                            name: name,
+                            surname: surname,
+                            email: email,
+                            password: password
+                        })
+                        .then(response => {
+                            console.log(response);
+                            window.location.href = 'login.html';
+                        })
+                        .catch(err => {
+                            console.log(err, err.response);
+                            document.getElementById('display-error').innerText = "A user with that email already exists";
+                    });
+                    }
+            </script>
+        </form>
+    </div>
+
+</body>
+</html>
