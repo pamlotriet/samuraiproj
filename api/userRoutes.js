@@ -1,5 +1,5 @@
 const path - require('path')
-const User = require('./schemas/userSchema.js');
+const User = require('./schemas/userSchema');
 
 //register new user
 
