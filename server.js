@@ -59,8 +59,7 @@ router.post('/register.html', (req,res,next)=> {
                                     error: err
                                 });
                             });
-                    
-                });
+              
     });
 
 
