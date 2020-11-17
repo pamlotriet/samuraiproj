@@ -1,5 +1,4 @@
-const path - require('path')
-import User from './schemas/userSchema');
+
 
 //register new user
 
