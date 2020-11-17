@@ -33,7 +33,7 @@ mongoose.connection.on('connected', () => {
 
 //register new user
 
-router.post('/register.html', (req,res,next)=> {
+app.post('/register.html', (req,res,next)=> {
     User.find({email: req.body.email})
     .exec()
     .then(user => {
