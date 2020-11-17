@@ -6,4 +6,4 @@ phases:
     #install dependencies needed
     - npm install
     #upgrade aws cli
-    #- pip install --upgrade awscli
+    - pip install --upgrade awscli
