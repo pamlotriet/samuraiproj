@@ -10,9 +10,9 @@ app.get('/',(req,res)=>{
 });
 
 //connect to mongo //
-const MONGO_URI ='mongodb+srv://Pamela:'+process.env.ATLAS_PASS+'@samusers.c98z3.mongodb.net/<dbname>?retryWrites=true&w=majority';
 
-mongoose.connect(process.env.MONGO_URI || MONGO_URI, {
+
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser:true,
     useUnifiedTopology: true
 });
