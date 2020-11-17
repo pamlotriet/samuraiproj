@@ -38,7 +38,7 @@ const userSchema = mongoose.Schema({
 
 //registering new user
 router.post('/register.html', (req,res,next)=> {
-        User.find({email: req.body.email})
+        userSchema.find({email: req.body.email})
         .exec()
         .then(user => {
             if(user){
