@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 
-const userRoutes = require(path.join(__dirname+'/userRoutes'));
+
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
@@ -28,6 +28,14 @@ mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!');
 });
 
+//creating user schema
+
+const userSchema = mongoose.Schema({
+    name:{type: String},
+    surname: {type: String},
+    email: {type: String, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ },
+    password:{type: String},
+});
 
 
 app.listen(PORT);
