@@ -27,18 +27,12 @@ mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!');
 });
 
-//creating user schema
-const userSchema = mongoose.Schema({
-    name:{type: String},
-    surname: {type: String},
-    email: {type: String, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ },
-    password:{type: String},
-});
+
 
 
 //registering new user
 router.post('/register.html', (req,res,next)=> {
-        userSchema.find({email: req.body.email})
+        User.find({email: req.body.email})
         .exec()
         .then(user => {
             if(user){
@@ -47,7 +41,7 @@ router.post('/register.html', (req,res,next)=> {
                 });
             }
             else{
-                        const user = new userSchema({
+                        const user = new User({
                             name: req.body.name,
                             surname: req.body.surname,
                             email: req.body.email,
