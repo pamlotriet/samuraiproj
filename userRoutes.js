@@ -1,7 +1,6 @@
 const express = require('express');
 const User = require('./userSchema');
 const path = require('path');
-const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname));
 
