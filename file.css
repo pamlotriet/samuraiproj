@@ -1,0 +1,96 @@
+body{
+    background-color: #364141;
+    position: relative;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    display: block;
+    color: #E5E7E9;
+}
+
+
+form{
+    top: 5%;
+    align-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+button:hover {
+    opacity: 0.8;
+  }
+
+  button{
+    height: 50px;
+    width: 200px;
+    background-color: #E3E4FA;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    color: black;
+    font-weight: 700;
+  }
+
+
+textarea{
+    height: 300px;
+    width: 70%;
+    background-color: #E3E4FA;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-weight: 700;
+  }
+
+  #nameInfo{
+    width: 33%;
+    height: 50%;
+  }
+
+  #surnameInfo{
+    width: 33%;
+    height: 50%;
+  }
+
+  #data{
+    width: 100%;
+    height: 75vh;
+    display: flex;
+  }
+
+  #emailInfo{
+    width: 33%;
+    height: 50%;
+  }
+
+  #userNumber{
+    width: 20%;
+    height: 10%;
+  }
+
+  #addMeName{
+    width: 20%;
+    height: 5%;
+    resize: none;
+    overflow: hidden;
+  }
+
+  
+  #addMeSurname{
+    width: 20%;
+    height: 5%;
+    resize: none;
+    overflow: hidden;
+  }
+
+  #saveDatadiv{
+    padding-top: 2%;
+  }

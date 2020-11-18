@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="file.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getName()" id = "retrieveData" type="button" >Retrieve Data Found</button>
+    <br>
+    <form id='data'>
+      
+        <div id="nameInfo">
+            <label>Potential names found in your file</label>
+            <br>
+            <textarea id="namesText" rows="4" columns="20"> </textArea>
+            <br>
+            <input type="checkbox" id="name" name="name" value="name"> 
+            <label for="name">My name is in this list</label>
+            <br>
+            <input type="checkbox" id="namenotintext" name="nameAdd" value="name"> 
+            <label for="name">My name is in not this list but is in the file</label>
+            <br>
+            <input type="checkbox" id="noName" name="nameAdd" value="name"> 
+            <label for="name">My name is in not this file</label>
+            <br>
+            <br>
+        </div>
+
+        <div id="surnameInfo">
+            <label>Potential surnames found in your file</label>
+            <br>
+            <textarea id="surnamesText" rows="4" columns="20"> </textArea>
+            <br>
+            <input type="checkbox" id="surname" name="surname" value="surname"> 
+            <label for="surname">My surname is in this list</label>
+            <br>
+            <input type="checkbox" id="surnamenotintext" name="surnameAdd" value="surname"> 
+            <label for="name">My surname is in not this list but is in the file</label>
+            <br>
+            <input type="checkbox" id="noSurname" name="noSurname" value="surnamesFound"> 
+            <label for="name">My surname is in not this file</label>
+            <br>
+            <br>
+            <br>
+        </div>
+
+        <div id="emailInfo">
+            
+            <label>Potential email addresses found in your file</label>
+            <br>
+            <textarea id="emailText" rows="4" columns="20"> </textArea>
+            <br>
+            <input type="checkbox" id="email" name="email" value="email"> 
+            <label for="surname">My email address is in this list</label>
+            <br>
+            <input type="checkbox" id="emailNotText" name="emailAdd" value="emailAdd"> 
+            <label for="name">My email address is in not this list but is in the file</label>
+            <br>
+            <input type="checkbox" id="noEmail" name="noEmail" value="noEmail"> 
+            <label for="name">My email address is in not this file</label>
+            <br>
+            <br>
+        </div>
+    </form>
+    <br>
+    <div id="other">
+        <br>
+        <input type="checkbox" id="phoneNumber" name="phoneNumber" value="phoneNumber"> 
+        <label for="phoneNumber">My phone number is in this file</label>
+        <br>
+    </div>
+    <br>
+    
+    <div id="saveDatadiv">
+        <button onclick="savedata()" id = "saveData" type="button" >Save Data</button>
+        <br>
+        <br>
+        <textarea id="allData" rows="10" columns="5"> </textArea>
+        <br>
+        <button onclick="seeData()"  id = "seeMyfiles" type="button" >See My Data</button>
+        <br>
+    </div>
+    
+    
+    <script>
+
+          
+          var userNumber = ''; 
+
+          const getName = () => {
+                //display names
+                var xmlhttp, text;
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.open('GET', '/uploads/namesfound.txt', false);
+                xmlhttp.send();
+                text = xmlhttp.responseText;
+                document.getElementById('namesText').textContent = text;
+               
+                //display surnames
+                var xmlhttp1, text1;
+                xmlhttp1 = new XMLHttpRequest();
+                xmlhttp1.open('GET', '/uploads/surnamesFound.txt', false);
+                xmlhttp1.send();
+                text1 = xmlhttp1.responseText;
+                document.getElementById('surnamesText').textContent = text1;
+
+                //display emails
+                var xmlhttp2, text2;
+                xmlhttp2 = new XMLHttpRequest();
+                xmlhttp2.open('GET', '/uploads/emailsFound.txt', false);
+                xmlhttp2.send();
+                text2 = xmlhttp2.responseText;
+                document.getElementById('emailText').textContent = text2;
+               
+
+                //get userNumber
+                var xmlhttp3, text3;
+                xmlhttp3 = new XMLHttpRequest();
+                xmlhttp3.open('GET', '/uploads/userID.txt', false);
+                xmlhttp3.send();
+                text3 = xmlhttp3.responseText;
+                userNumber = text3;
+                return ;
+            }
+
+         
+            
+            var name = false;
+            var surname =false;
+            var email = false;
+            var phoneNumber = false;
+            var insertName = document.getElementById('addMeName').textContent;
+           
+            //saving data
+           const savedata = () => {
+
+               //geting data
+               if(document.getElementById('name').checked)
+                {
+                    name = true;
+                }
+                else
+                {
+                    if(document.getElementById('namenotintext').checked === true)
+                    {
+                        name = true;
+
+                    }
+                    else
+                    {
+                        if(document.getElementById('noName').checked === true)
+                        {
+                            
+                        }
+                    }
+                }
+                
+            
+
+                if(document.getElementById('surname').checked === true)
+                {
+                    surname = true;
+                }
+                else
+                {
+                    if(document.getElementById('surnamenotintext').checked === true)
+                    {
+                        surname = true;
+                    }
+                    else
+                    {
+                        if(document.getElementById('noSurname').checked === true)
+                        {
+                            surname = false;
+                        }
+                    }
+                }
+
+                if(document.getElementById('email').checked === true)
+                {
+                    email = true;
+                }
+                else
+                {
+                    email = false;
+                }
+
+                if(document.getElementById('phoneNumber').checked === true)
+                {
+                    phoneNumber = true;
+                }
+                else
+                {
+                    phoneNumber = false;
+                }
+                
+                
+
+               axios.post('/datafound.html',{
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    userNumber: userNumber
+                })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(err => {
+                    console.log(err, err.response);
+                });
+                return;
+            }
+
+           const seeData = () => {
+                //get userNumber
+                var xmlhttp4, text4;
+                xmlhttp4 = new XMLHttpRequest();
+                xmlhttp4.open('GET', '/uploads/allData.txt', false);
+                xmlhttp4.send();
+                text4 = xmlhttp4.responseText;
+                document.getElementById('allData').textContent = text4;
+                return ;
+
+                
+           }
+            
+    </script>
+</body>
+</html>
